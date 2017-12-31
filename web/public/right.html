@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>COVA IoT 유비쿼터스 인공지능 미세먼지 공기청정기</title>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+<script>
+
+ // Initialize Firebase
+var config = {
+    apiKey: "AIzaSyDX2Rzqks9Kijp8rlG5fJU1d_w8mbPOcw8",
+    authDomain: "dust-8d468.firebaseapp.com",
+    databaseURL: "https://dust-8d468.firebaseio.com",
+    projectId: "dust-8d468",
+    storageBucket: "dust-8d468.appspot.com",
+    messagingSenderId: "102112395881"
+  };
+ firebase.initializeApp(config);
+
+  var db = firebase.database();
+  var query = db.ref("log").orderByKey();
+  var device = db.ref("device");
+  var outdoor=db.ref("outdoor");
+  /*db.ref('cova').once('value').then(function(snapshot) {
+  var keys=snapshot.key;
+  var usrInfo = snapshot.val(); 
+  console.log(keys);
+});*/
+</script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div><h1>COVA 스마트 IoT 미세먼지 인공지능 분석 솔루션</h1></div>
+    <hr color="blue" size="5">
+    <h2><div id='connect'></div></h3>
+    <hr color="green" size="5">
+    <h2><div id="ext"></div></h2>
+    <hr color="black" size="2">
+    <h2><div id='int'></div></h2>
+    <hr color="green" size="5">
+    <hr color="red" size="5">
+    <h3><div id="diag"></div></h3>
+    <hr color="red" size="5">
+    <hr color="green" size="5">
+    <h3><div id="log"></div></h3>
+    <h2><div id="rst"></div></h2>
+    <hr color="blue" size="5">
+    <script>
+    var pmint=1000;
+    var pmext;
+    var down;
+    var up;
+     function ai(){
+        solution="";
+        pmin=String(pmint);
+        pmout=String(pmext);
+        if(pmint>pmext)
+        {
+          solution+="실내 미세먼지: "+pmin+" 수치가 실외 미세먼지 수치: "+pmout+" 보다  높습니다.<br>"
+          if(pmext<50) solution+="실외 공기가 좋음 이므로 환기를 권장합니다.<br>(대기오염 관련 질환자군에서도 영향이 유발되지 않을 수준)";
+          else solution+="실외 공기 또한 좋지 않으므로 IoT 공기청정기 밀폐 플러그인 사용을 권장합니다.<br>기기 오른쪽의 마스크 플러그인 혹은 노즐 플러그인을 착용하십시오";
+        }
+        else
+        {
+          solution+="실외 미세먼지: "+pmout+" 수치가 실내 미세먼지 수치: "+pmin+" 보다  높습니다.<br>"
+          if(pmint<50) solution+="미세먼지가 IoT 공기청정기로 제거 되었습니다.<br>환기 및 IoT 미세먼지 공기 청정기를 종료하셔도 좋습니다.";
+          else solution+="실외공기 환기 및 창문 개방을 하지 마십시오.<br>기기를 현재와 같이 계속 사용하시기 바랍니다.";
+        }
+        if(up>down)
+        {
+        document.getElementById('rst').innerHTML=("<font color='red'><i>인공지능 분석결과 미세먼지 증가 예상!</i></font>");
+        }
+    else
+     {
+      document.getElementById('rst').innerHTML=("<font color='blue'><i>인공지능 분석결과 미세먼지 감소 예상!</i></font>");
+     }
+       
+        document.getElementById('diag').innerHTML=(solution);
+      }
+
+// This example creates a 2-pixel-wide red polyline showing the path of William
+// Kingsford Smith's first trans-Pacific flight between Oakland, CA, and
+// Brisbane, Australia.
+  device.on("value",function(snapshot) {
+    if(snapshot.val()==1) document.getElementById('connect').innerHTML=("현재 IoT 공기청정기가 인공지능 서버와 <font color='green'>연결</font>되어있습니다.");
+    else document.getElementById('connect').innerHTML=("IoT 공기청정기가 인공지능 서버와 <font color='red'>연결 해제 되어있습니다.</font>");
+    });
+  outdoor.on("value",function(snapshot) {
+    var childData=snapshot.val();
+    pmext=Number(childData['pm']);
+    document.getElementById('ext').innerHTML=('현재 실외 위치: <b>'+childData['place']+', 미세먼지 지수:<i>'+childData['pm']+'</i></b><br>'+childData['grade']);
+    ai();
+  });
+    
+
+  var log="";
+  var grade;
+  query.on("value",function(snapshot) {
+    
+    //console.log(snapshot.val());
+    //var coordinates = [];
+    down =0;
+    up = 0; 
+    snapshot.forEach(function(childSnapshot) {
+      var childData = childSnapshot.val();
+      var keys = String(childSnapshot.key).split('-');
+      var key="";
+      for (var j = 0; j < keys.length-1; j++) {
+        key+=keys[j];
+        if (j==0) {
+          key+="년 ";
+        }
+        else if (j==1) {
+          key+="월 ";  
+        }
+        else if (j==2) {
+          key+="일 ";  
+        }
+        else if (j==3) {
+          key+="시 ";  
+        }
+        else if (j==4) {
+          key+="분 ";  
+        }
+        else if (j==5){
+          key+="초 ";  
+        }
+      }
+      var logtxt;
+      if (pmint<childData['pm']) 
+        {logtxt=key+" 실내 미세먼지 지수("+childData['pm']+")가 <font color='red'>증가했습니다.</font> ";
+      up+=1;
+    }
+      else
+      {
+          logtxt=key+" 실내 미세먼지 지수("+childData['pm']+")가 <font color='blue'>감소했습니다.</font> ";
+          down+=1;
+      }
+      log+=(logtxt+"<br/>");
+      pmint=Number(childData['pm']);
+       if (pmint > 300) grade = "위험<br>환자군 및 민감군에게 응급 조치가 발생되거나<br> 일반인에게 유해한 영향이 유발될 수 있는 수준";
+                  else if (pmint > 200) grade = "매우 나쁨<br>환자군 및 민감군에게 급성 노출시 심각한 영향 유발<br> 일반인도 약한 영향이 유발될 수 있는 수준";
+                  else if (pmint > 150) grade = "나쁨<br>환자군 및 민감군[어린이, 노약자 등]에게 유해한 영향 유발<br> 일반인도 건강상 불쾌감을 경험할 수 있는 수준";
+                  else if (pmint > 100) grade = "민감군 영향<br>환자군 및 민감군에게 유해한 영향이 유발될 수 있는 수준";
+                  else if (pmint > 50)  grade = "보통<br>환자군에게 만성 노출시 경미한 영향이 유발될 수 있는 수준";
+                  else grade = "좋음<br>대기오염 관련 질환자군에서도 영향이 유발되지 않을 수준";
+        document.getElementById('int').innerHTML=("현재 실내 미세먼지 지수:<i>"+childData['pm']+'</i><br>'+grade);
+      });
+    document.getElementById('log').innerHTML=(log);
+      ai();
+  });
+     
+    </script>
+    
+  </body>
+</html>

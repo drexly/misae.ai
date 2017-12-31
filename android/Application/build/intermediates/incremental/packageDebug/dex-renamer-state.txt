@@ -1,0 +1,7 @@
+#Tue Oct 10 02:59:06 KST 2017
+base.0=C\:\\Users\\drexly\\Documents\\KakaoTalk Downloads\\android-BluetoothLeGatt-master1\\android-BluetoothLeGatt-master\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_c91da5f482d1f52b8674fe51285fe39f3c1a0a52
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\drexly\\Documents\\KakaoTalk Downloads\\android-BluetoothLeGatt-master1\\android-BluetoothLeGatt-master\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_cc57d23b186a723ea7b6153f121ff14825653b50\\classes.dex
+base.1=C\:\\Users\\drexly\\Documents\\KakaoTalk Downloads\\android-BluetoothLeGatt-master1\\android-BluetoothLeGatt-master\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_cc57d23b186a723ea7b6153f121ff14825653b50
+file.0=C\:\\Users\\drexly\\Documents\\KakaoTalk Downloads\\android-BluetoothLeGatt-master1\\android-BluetoothLeGatt-master\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_c91da5f482d1f52b8674fe51285fe39f3c1a0a52\\classes.dex

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>미세.에이아이 AIoT 유비쿼터스 인공지능 웨어러블 헬스케어</title>
+    <!--meta name="viewport" content="initial-scale=1.0, user-scalable=yes"-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 150%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #panel {
+        position: absolute;
+        top: 1px;
+        left: 65%;
+        right:3%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 0px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 0px;
+      }
+       @media ( max-width: 1024px ) {
+        #panel {
+          position: left;
+          left: 0;
+          right: 0;
+          z-index:0;
+          border: 0px solid #999;
+        }
+        #map {
+          top:75%;
+        }
+      }
+
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-1.28.3.js"></script>
+    <!-- regression.js -->
+    <script src="https://Tom-Alexander.github.io/regression-js/jquery.flot.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/regression/1.4.0/regression.min.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="panel">
+      <h3>미세에이아이 유비쿼터스 AIoT 체중감량 인공지능 분석 솔루션</h3>
+      <input id="address" type="textbox" size="35" value="인텔코리아">
+      <input id="submit" type="button" value="미세먼지 탐색" >
+      <input type="button" id="sclear" value="탐색 초기화">
+       <div style="width: 99%;" id="analysis" align="left"></div>
+       <hr color="black" size="1">
+       <div id="oracle"></div>
+       <!--hr color="black" size="1"-->
+       <!--div id="connect" style="display:none;"></div-->
+       <hr color="black" size="1">
+       <div id="ext"></div>
+       <!--hr color="black" size="1">
+       <div id="diag" style="display:none;"></div-->
+    </div>
+    <script>
+     // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDX2Rzqks9Kijp8rlG5fJU1d_w8mbPOcw8",
+        authDomain: "dust-8d468.firebaseapp.com",
+        databaseURL: "https://dust-8d468.firebaseio.com",
+        projectId: "dust-8d468",
+        storageBucket: "dust-8d468.appspot.com",
+        messagingSenderId: "102112395881"
+      };
+     firebase.initializeApp(config);
+      var db = firebase.database();
+      var query = db.ref("log").orderByKey();
+      var device = db.ref("device");
+      var outdoor=db.ref("outdoor");
+
+    //firebase
+     var pmint=-1;
+     var pmext;
+     var perform=0;
+     var lastlog="";
+     var devon=false;
+      query.on("value",function(snapshot) {
+      var sr=[];
+      var key="";
+      snapshot.forEach(function(childSnapshot) {
+        var childData= childSnapshot.val();
+        var timestamp="";
+        var src=[];
+        var keys = String(childSnapshot.key).split('-');
+        key="";
+        for (var j = 0; j <  keys.length-1; j++) {
+          timestamp+=keys[j];
+          key+=keys[j];
+          if (j==0) {
+            key+="년 ";
+          }
+          else if (j==1) {
+            key+="월 ";  
+          }
+          else if (j==2) {
+            key+="일 ";  
+          }
+          else if (j==3) {
+            key+="시 ";  
+          }
+          else if (j==4) {
+            key+="분 ";  
+          }
+          else if (j==5){
+            key+="초 ";  
+          }
+        }
+        src.push(timestamp);
+        pmint=parseInt(childData['pm']);
+        pmrst=parseInt(childData['pmout']);
+        if(pmrst<pmint){
+          //perform=(((pmint-pmrst)/pmint)*100).toFixed(2);
+          perform=(pmint-pmrst);
+        }
+        src.push(pmint);
+        sr.push(src);
+      });
+      while(sr.length>11){
+        sr.shift();
+      }
+      lastlog=key;
+      retrieve(sr);
+      onoffchk();
+    });
+
+      device.on("value",function(snapshot) {
+      if(snapshot.val()==1){
+        devon=true;
+      } 
+      else {
+        devon=false;
+      }
+          ai(pmint,pmext);
+    });
+      
+      outdoor.on("value",function(snapshot) {
+    var childData=snapshot.val();
+    pmext=Number(childData['pm']);
+    document.getElementById('ext').innerHTML=('현재 실외 위치: <b><font color=\'blue\'>'+childData['place']+'</font>, 미세먼지 지수:<i>'+childData['pm']+'</i></b> '+childData['grade']);
+    ai(pmint,pmext);
+  });
+    //firebase end
+    function onoffchk(){
+      /*
+      if(devon){
+         document.getElementById('connect').innerHTML=("<font color='green'><b>-"+perform.toString()+"</b></font> 현재 AIoT 미세먼지청정기가 인공지능 서버에 의해<font color='green'><b> 켜졌</b></font>습니다.");
+      }
+      else{
+        document.getElementById('connect').innerHTML=("AIoT 공기청정기가 인공지능 서버에 의해<font color='red'><b> 꺼졌</b></font>습니다.");
+      }
+      */
+    }
+    function ai(pmint,pmext){
+        if (pmint==-1) {
+        alert("미세먼지 측정기 정보가 업데이트 되었습니다. 새로고침 말고 탐색 초기화를 누르세요");
+        };
+        solution="";
+        pmin=String(pmint);
+        pmout=String(pmext);
+        if(pmint>pmext)
+        {
+          solution+="<font color=\'green\'>실내 미세먼지: "+pmin+" 수치가</font><br>실외 미세먼지 수치: "+pmout+" 보다 <font color=\'red\'>높습니다.</font><br>"
+          if(pmext<50) solution+="실외 공기가 좋음 이므로 환기를 권장합니다.<br>(대기오염 관련 질환자군에서도 영향이 유발되지 않을 수준)";
+          else solution+="실외 공기 또한 좋지 않으므로 AIoT 공기청정기 밀폐 플러그인(마스크) 사용을 권장합니다.<br>기기 오른쪽의 마스크 플러그인 혹은 노즐 플러그인을 착용하십시오";
+        }
+        else
+        {
+          solution+="<font color=\'green\'>실외 미세먼지: "+pmout+" 수치가</font><br>실내 미세먼지 수치: "+pmin+" 보다 <font color=\'red\'>높습니다.</font><br>"
+          if(pmint<50) solution+="미세먼지가 AIoT 공기청정기로 제거 되었습니다.<br>환기는 가급적 하지 마시고, AIoT 미세먼지 공기 청정기를 종료하셔도 좋습니다.";
+          else solution+="실외 공기 환기 및 창문 개방을 하지 마십시오.<br>기기를 현재와 같이 계속 사용하시기 바랍니다.";
+        }
+        //document.getElementById('diag').innerHTML=("<h3>"+solution+"<h3>");
+      }
+    function geokey(){
+           var keys=["AIzaSyCIJgbczxaPNjRWMvIXlQhNjUWAT7TtquQ","AIzaSyA7FyX4lDBiYsCG_KeOm5g-NmXqOmwWoeQ","AIzaSyCHFFfOhqJdNfvclloArU1lhieenbuDyTk","AIzaSyAf3lfCaL7fROslPiLQIvMX8lbX9IVZ9m0"];
+           var rand = keys[Math.floor(Math.random() * keys.length)];
+      return rand;
+    }
+    function tparser(origin){
+      tparsed=origin.slice(0,4)+"-"+origin.slice(4,6)+"-"+origin.slice(6,8)+" "+origin.slice(8,10)+":"+origin.slice(10,12)+":"+origin.slice(12,14);
+      return tparsed
+    }
+     function ntparser(origin){
+      tparsed=origin.slice(0,2)+"-"+origin.slice(2,4)+" "+origin.slice(4,6)+":"+origin.slice(6,8)+":"+origin.slice(8,10);
+      return tparsed
+    }
+    function toTimestamp(strDate){
+       var d = new Date(strDate);
+      return d.getTime();
+      }
+    function futimer(src){
+      var rst=0;
+      for (var i = 1; i <src.length; i++) 
+      {
+        var aft=tparser(src[i][0]);
+        var bef=tparser(src[i-1][0]);
+        var diff=parseInt(toTimestamp(aft))-parseInt(toTimestamp(bef));
+        rst+=diff;
+      }
+      rst=rst/(src.length-1);
+      return rst;
+  }
+  function labeler(reged){
+    var olabel=[];
+    var flabel=[];
+    for (var i = 0; i <reged.length; i++) {
+      if(i==reged.length-1){
+        flabel.push('미래 :'+ntparser(reged[i][0]));
+      }
+      else if(i==reged.length-2){
+        flabel.push('현재');
+        olabel.push(ntparser(reged[i][0]));
+      }
+      else{
+       flabel.push('과거'); 
+       olabel.push(ntparser(reged[i][0]));
+      }
+    }
+    return [olabel,flabel];
+  }
+  function futvaler(last,gap){
+    var rst=[];
+    var ntimestamp=parseInt(toTimestamp(tparser(last)))+gap;
+    var futuredate = new Date(ntimestamp);
+    var h=futuredate.getHours();
+    futuredate.setHours(h+9);//iso string gmt 미적용 문제
+    var rdate=futuredate.toISOString().slice(5,10).replace('-','');
+    futuredate.setHours(h);//다시 시분초 복구
+    var comp=futuredate.toTimeString().slice(0,8).split(':');
+  for(var i=0;i<comp.length;i++){
+      rdate+=comp[i];
+  }
+  rst.push(rdate);
+  rst.push(null);
+    return rst;
+  }
+  function answerer(org,learnt,sec)
+  {
+    var rst="최근 집계 시각: "+lastlog+"<br>약 "+(sec/1000).toFixed(2).toString()+"초 후, 당신의 체중 감량 정도는<br>";
+    var now=parseFloat(org[org.length-1][1]);
+    var fut=parseFloat(learnt[learnt.length-1][1]);
+    var futbef=parseFloat(learnt[learnt.length-2][1]);
+    if((fut-now)<0.01)
+    {
+      rst+="소폭 증가합니다.";
+      return rst;
+    }
+    else if (now<fut) {
+      rst+=((fut-now).toFixed(2).toString()+"mg 만큼 <font color=\'red\'>증가</font>할 것이며, ");
+    }
+    else{
+     rst+=((now-fut).toFixed(2).toString()+"mg 만큼 <font color=\'blue\'>감소</font>할 것이며, "); 
+    }
+    if (futbef<fut) {
+      rst+=("전체적으로는 <font color=\'red\'>감량 정도가 상승세</font>입니다.");
+    }
+    else{
+     rst+=("전체적으로는 <font color=\'blue\'>감량 정도가 하향세</font>입니다.");
+    }
+    return rst;
+  }
+  function retrieve(sr){
+        futgap=futimer(sr);
+        futval=futvaler(sr[sr.length-1][0],futgap);
+        src=[];
+        for (var i = 0; i <sr.length; i++) {
+          var tmp=[];
+          tmp.push(sr[i][0].slice(4,14));
+          tmp.push(sr[i][1]);
+          src.push(tmp);
+        }
+        src.push(futval);
+        var myRegression = regression('polynomial', src, 11);
+        //var formula="현재 ("+sr[sr.length-1][1].toString()+"):"+grader(sr[sr.length-1][1])+"<br>미래 ("+myRegression.points[myRegression.points.length-1][1].toFixed(2).toString()+"):"+grader(myRegression.points[myRegression.points.length-1][1]);
+        var formula="현재 "+sr[sr.length-1][1].toFixed(2).toString()+"mg 감량"+"→ 미래 "+myRegression.points[myRegression.points.length-1][1].toFixed(2).toString()+"mg 감량";
+        document.getElementById('oracle').innerHTML=("<h3>"+answerer(sr,myRegression.points,futgap)+"</h3>");
+        labels=labeler(myRegression.points);
+
+        var olabel=labels[0];
+        var flabel=labels[1];
+
+            orgx=[]
+            orgy=[]
+            regx=[];
+            regy=[];
+
+        for (var i = 0; i <myRegression.points.length; i++) 
+        {
+          if (i<myRegression.points.length-1) {
+          orgx.push(src[i][0]);
+          orgy.push(src[i][1]);  
+          }
+          regx.push(myRegression.points[i][0]);
+          regy.push(myRegression.points[i][1]);
+        }
+        traceOrg=
+        {
+          textposition: 'top',
+          mode: 'markers+text',
+          x: orgx,
+          y: orgy,
+          name: '집계 원본',
+          text: olabel
+        }
+        traceReg=
+        {
+            x: regx,
+            y: regy,
+            name: '인공 지능',
+            type: 'scatter',
+            text: flabel
+        }
+        var data = [
+        traceOrg,
+        traceReg
+        ];
+
+        var layout = {
+          autosize: true,
+          title: 'AIoT 융·복합 인공지능 체중감량 분석결과',
+          xaxis: {
+            title: formula,
+            showgrid: true,
+            showline: true,
+            zeroline: true,
+            showticklabels:false,
+          },
+          yaxis: {
+            title:'실시간 체중 감량(milligram)', 
+            showline: true
+          }
+
+        };
+
+      Plotly.newPlot('analysis', data,layout);
+      ai(pmint,pmext);
+    }
+      function geoFindMe(map,geocoder) {
+            if (!navigator.geolocation){
+              alert("사용자의 브라우저는 지오로케이션을 지원하지 않습니다.");
+            }
+            function success(position) {
+              var latitude  = position.coords.latitude;
+              var longitude = position.coords.longitude;
+              var myLatlng = {lat: latitude, lng: longitude};
+              map.setCenter(myLatlng);
+              addr="https://maps.googleapis.com/maps/api/geocode/json?latlng="
+              addr+=(latitude+",");
+              addr+=longitude;
+              addr+=("&key="+geokey());
+              $.getJSON(addr,function(result)
+              {
+                if (result.status=='OK')
+                {
+                  document.getElementById('address').value=(result.results[0]['formatted_address']);
+                  //geocodeAddress(geocoder, map);
+                }
+              });
+            };
+
+            function error() {
+                alert("사용자의 위치를 찾을 수 없습니다.");
+            };
+            navigator.geolocation.getCurrentPosition(success, error);
+      }
+      function initMap() {
+        
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: {lat: 37.5585639, lng: 126.9989122}
+        });  
+        var geocoder = new google.maps.Geocoder();
+        geoFindMe(map,geocoder);      
+        document.getElementById('address').addEventListener('keypress', function (e) {
+            var key = e.which || e.keyCode;
+            if (key === 13) { // 13 is enter
+              geocodeAddress(geocoder, map);
+            }
+        });
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+        });
+        document.getElementById('sclear').addEventListener('click', function() {
+          initMap();
+        });
+      }
+
+      function grader(pm){
+          if (pm > 300) grade = "위험<br>환자군 및 민감군에게 응급 조치가 발생되거나<br> 일반인에게 유해한 영향이 유발될 수 있는 수준";
+                  else if (pm > 200) grade = "매우 나쁨<br>환자군 및 민감군에게 급성 노출시 심각한 영향 유발<br> 일반인도 약한 영향이 유발될 수 있는 수준";
+                  else if (pm > 150) grade = "나쁨<br>환자군 및 민감군[어린이, 노약자 등]에게 유해한 영향 유발<br> 일반인도 건강상 불쾌감을 경험할 수 있는 수준";
+                  else if (pm > 100) grade = "민감군 영향<br>환자군 및 민감군에게 유해한 영향이 유발될 수 있는 수준";
+                  else if (pm > 50)  grade = "보통<br>환자군에게 만성 노출시 경미한 영향이 유발될 수 있는 수준";
+                  else grade = "좋음<br>대기오염 관련 질환자군에서도 영향이 유발되지 않을 수준";
+          return grade;
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            var lt=results[0].geometry.location.lat();
+            var lg=results[0].geometry.location.lng();
+            resultsMap.setCenter({lat:lt,lng:lg});
+            var addr="";
+            addr+="https://api.waqi.info/feed/geo:";
+            addr+=String(lt);
+            addr+=";"
+            addr+=String(lg);
+            addr+="/?token=cb117eb99364ee73c69d0fcc4d7f34a09f97ec21"
+            $.getJSON(addr,function(result)
+            {
+                if (result.data)
+                {
+                  var pm=String(result.data.aqi);
+                  var time=result.data.time.s;
+                  var urllink=result.data.city.url;
+                  var grade=grader(pm);
+                  var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">'+address+' ('+pm+')</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>'+grade+'</b></p>'+
+            '<p>관측 시각: '+time +' <a href="'+urllink+'" target="_blank">'+
+            '지역 관측소 분석 및 예보</a></p>'+
+            '</div>'+
+            '</div>';
+                  firebase.database().ref('outdoor').set({
+                   place: address,
+                   pm: pm,
+                   grade : grade
+                  });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+                  var marker = new google.maps.Marker({
+                  map: resultsMap,
+                  position: results[0].geometry.location,
+                  label:pm
+                  });
+                  marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                  });
+                  infowindow.open(map, marker);
+                } 
+            });
+          } else {
+            alert('잘못된 지역명을 입력하셨습니다(오류): ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCekU-pwSBtszzbrirFfSEXIEkg2wiw-tc&callback=initMap">
+    </script>
+  </body>
+</html>

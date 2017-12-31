@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\5d1677e76c2a154a94639659dbd2d938aa55478e\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_89c81eef354346f414378b6ad0abf25753b2a08c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.8.0\5a11f020cce2d11eb71ba916700600e18c4547e7\okhttp-3.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\okhttp-3.8.0_c04156cbc4604cae3ca90409c77043fa76ac38a9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\7bccf6b7b87df01e9cf61a42a491d55ec5b7a93b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_ac7450fafa999cd9ea234100ff6fb4db0e7b8ac4.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\drexly\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.8.0\5a11f020cce2d11eb71ba916700600e18c4547e7\okhttp-3.8.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.8.0_c04156cbc4604cae3ca90409c77043fa76ac38a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_c91da5f482d1f52b8674fe51285fe39f3c1a0a52\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\60c60890315d796bbfd1b1c3f6e293ae04314039\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_338d07f7daa472c6404f6a5d94aa9a90f85c388b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\50b49058ff5bf9b1b853b77fd79e3697fd43bc83\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_c8fcd25c0592d151c0faa18d2bac2010a97545a5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\ba642f328851b9241674537a0cf2643fb2ff0948\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_cc17cc79b853a4837c8c503e33ff2de89559ebc8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\okio-1.13.0_6b563f555b2a3d291aba06c8070a1d52db522afb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\6adf06df4b9f401739af55fe6b3100d6b36a1ad3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_cf6e11737de05f75a3378937bb4e694191f486bf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\5bfbb1bbe9d863ae181c899473ee31519045673f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8531f2d46b35de75e6130f25830e0c2c0d6bb98c">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_4352b34ae75e71f94cc0c0fbf4477b0be6d874e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\12c69914e43383bf930b994ec73b940af642469d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_f850dccd6e4b505493b1c82ceb4891bbf303e34e.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c3245dfa700730ae8286879872924670df9ba930">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cc57d23b186a723ea7b6153f121ff14825653b50\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\bce5e8e53e062ef54691397666709d78153bfbc9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_fa0f38b2e1c508f8a6b337da17b40664c0f9fe32.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\993124533f5a7d4d1ab6daf9f89054dfd441151a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_cd1036fc3302726bd9ac18a262df1f6055a87f1d.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\drexly\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.13.0_6b563f555b2a3d291aba06c8070a1d52db522afb\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\.android\build-cache\bbff5e076e95754b98d68c3dc53023e2a4a16638\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\classes_cce3388f6f511f4b45e0601d7b81433ab840b72a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\drexly\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\drexly\Documents\KakaoTalk Downloads\android-BluetoothLeGatt-master1\android-BluetoothLeGatt-master\Application\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_d2e9822d49459214e2b310c5d54d26bffcbdf65d.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,36 @@
+[debug] [2017-06-28T14:17:59.550Z] ----------------------------------------------------------------------
+[debug] [2017-06-28T14:17:59.554Z] Command:      C:\Program Files\nodejs\node.exe C:\Users\drexly\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2017-06-28T14:17:59.555Z] CLI Version:  3.9.1
+[debug] [2017-06-28T14:17:59.555Z] Platform:     win32
+[debug] [2017-06-28T14:17:59.555Z] Node Version: v6.10.2
+[debug] [2017-06-28T14:17:59.556Z] Time:         Wed Jun 28 2017 23:17:59 GMT+0900 (Korea Standard Time)
+[debug] [2017-06-28T14:17:59.556Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-06-28T14:17:59.590Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-06-28T14:17:59.591Z] > authorizing via signed-in user
+[debug] [2017-06-28T14:17:59.594Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-06-28T14:17:59.595Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/vFIfnYWhfljeeqzF1FsdIf5v3T4ZJ1dW7OvbG36-AVM',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jun 28 2017 23:17:59 GMT+0900 (Korea Standard Time)
+[debug] [2017-06-28T14:18:00.046Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-28T14:18:00.053Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/dust-8d468  
+ Wed Jun 28 2017 23:18:00 GMT+0900 (Korea Standard Time)
+[debug] [2017-06-28T14:18:02.009Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-28T14:18:02.010Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/dust-8d468/tokens  
+ Wed Jun 28 2017 23:18:02 GMT+0900 (Korea Standard Time)
+[debug] [2017-06-28T14:18:03.072Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\drexly\Desktop\dust'...
+[info] 
+[debug] [2017-06-28T14:18:03.075Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/dust-8d468  
+ Wed Jun 28 2017 23:18:03 GMT+0900 (Korea Standard Time)
+[debug] [2017-06-28T14:18:04.408Z] <<< HTTP RESPONSE 200
+[debug] [2017-06-28T14:18:04.408Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/102112395881/clients/_:getWebAppConfig  
+ Wed Jun 28 2017 23:18:04 GMT+0900 (Korea Standard Time)
+[debug] [2017-06-28T14:18:05.853Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+

@@ -1,0 +1,4 @@
+#Tue Oct 10 03:39:28 KST 2017
+base.0=C\:\\Users\\drexly\\Documents\\KakaoTalk Downloads\\android-BluetoothLeGatt-master1\\android-BluetoothLeGatt-master\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_9
+renamed.0=classes.dex
+file.0=C\:\\Users\\drexly\\Documents\\KakaoTalk Downloads\\android-BluetoothLeGatt-master1\\android-BluetoothLeGatt-master\\Application\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_9\\classes.dex
