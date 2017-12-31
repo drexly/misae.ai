@@ -1,11 +1,11 @@
 # misae.ai
 
-제 15회 임베디드SW경진대회 결선 @코엑스 
+제 15회 임베디드SW경진대회 결선작 @코엑스 
 (http://eswcontest.com/bbs/board.php?tbl=notice&mode=VIEW&num=205&chr=&category=&findType=&findWord=&sort1=&sort2=&page=1)
 
 김주현+강인조=주현인조
 
-AI+IoT Wearable HealthCare (Weight Reduce + MicroDust Solution)
+AI+IoT Wearable HealthCare (Machine Learning Weight Reduce + Regional MicroDust Avoiding Solution)
 
 ## Click below for HD Video
 * * *
@@ -13,7 +13,7 @@ AI+IoT Wearable HealthCare (Weight Reduce + MicroDust Solution)
 
 # System Information
 * * *
-
+![http://misae.ml](/intro/misae.png?raw=true "미세먼지+지방감량머신러닝")
 ![http://misae.ml](/intro/a&#32;(5).png?raw=true "미세먼지+지방감량머신러닝")
 ![http://misae.ml](/intro/a&#32;(2).png?raw=true "미세먼지+지방감량머신러닝")
 ![http://misae.ml](/intro/a&#32;(4).png?raw=true "미세먼지+지방감량머신러닝")
